@@ -21,6 +21,6 @@ class TowerofHanoi
         System.out.print("Enter the number of disk:");
         int n=sc.nextInt(); // Number of disks
         towerOfHanoi(n, 'S', 'A', 'D'); // S, A and D are names of rods
-        System.out.println("Updated");
+       
     }
 }

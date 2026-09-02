@@ -11,15 +11,17 @@ class que
 public class LQueue
 {
     //Scanner class object for user defined values
-    static Scanner sc=new Scanner(System.in);
+     Scanner sc=new Scanner(System.in);
     //que class object for queue operations
-    static que q=new que();
+    que q=new que();
 
     public static void main(String[] args)
     {
         System.out.println("Queue Implementation using Array");
+        
+        LQueue lque=new LQueue(); //Create an object of LQueue class to call the methods
         //Create an empty queue of user defined size
-        createQueue( );
+        lque.createQueue( );
         //Menu Driven Queue
         do
         {
@@ -29,12 +31,12 @@ public class LQueue
             System.out.println("3: Traverse Queue");
             System.out.println("4: Exit from Queue Program");
             System.out.print("Enter your choice::");
-            int ch=sc.nextInt();
+            int ch=lque.sc.nextInt();
             switch(ch)
             {
-                case 1: q.enqueue(); break;
-                case 2: q.dequeue();break;
-                //case 3: q.traverse(); break;
+                case 1: lque.enqueue(); break;
+                case 2: lque.dequeue();break;
+                case 3: lque.traverse(); break;
                 case 4: System.out.println("Terminating Program");
                         System.exit(0);
             }//end of switch            
@@ -43,18 +45,18 @@ public class LQueue
 
     //Methods Calling for Queue Operations
     //Empty Queue Creation
-   static void createQueue( )
+   void createQueue( )
    {
        System.out.print("Enter Queue Size: ");
-       int MaxSize=sc.nextInt();
-       q.arr=new int[MaxSize];  //Create an array of user defined size
+       q.MaxSize=sc.nextInt();
+       q.arr=new int[q.MaxSize];  //Create an array of user defined size
        //set front and rear indices to -1 to indicate that the queue is empty
        q.front=-1;
        q.rear=-1;
    }//end of createQueue 
 
     //Enqueue Method: Insert an element at the rear of the queue
-   static void enqueue( )
+   void enqueue( )
    {
        if(q.rear==q.MaxSize-1)   //check if queue is full i.e.  "Overflow"
        {
@@ -73,7 +75,7 @@ public class LQueue
    }//end of enqueue
 
     //Dequeue Method: Remove an element from the front of the queue
-    static void dequeue( )
+    void dequeue( )
     {
          if(q.front==-1)         //check if queue is empty i.e.  "Underflow"
          {
@@ -84,17 +86,20 @@ public class LQueue
          {
               int val=q.arr[q.front];            //Retrieve the value at front index
               System.out.println("Dequeued value: "+val);
-              q.front++;                        //Increment front index to remove the element from the queue
               if(q.front== q.rear)                //If front index equals rear index, reset both indices to -1 since last element dequeued
               {
                   q.front=-1;
                   q.rear=-1;
               }
+              else
+               {
+                    q.front++;                       //Increment front index to point to the next element in the queue
+               }
          }//end of else
     }//end of dequeue
 
     //Traverse Method: Display all elements in the queue
-    static void traverse()
+    void traverse()
     {
         if(q.front==-1)         //check if queue is empty
         {

@@ -1,1 +1,9 @@
+
+# Compiled Java files
 *.class
+
+# VS Code
+.vscode/
+
+# Log files
+*.log
